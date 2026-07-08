@@ -1,0 +1,187 @@
+/* ===== Shift Cell ===== */
+.shift-cell-wrapper {
+  position: relative;
+}
+
+.shift-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px var(--space-2);
+  min-width: 60px;
+  min-height: 36px;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-ink);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, background-color 150ms ease;
+  position: relative;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shift-cell:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.shift-cell:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.shift-cell--active {
+  border-style: solid;
+  border-color: var(--color-ink);
+  box-shadow: var(--shadow-md);
+}
+
+/* Shift type colors */
+.shift-cell--mattina {
+  border-color: var(--color-mattina);
+  background: var(--color-mattina-bg);
+  color: var(--color-mattina);
+  border-style: solid;
+}
+
+.shift-cell--pomeriggio {
+  border-color: var(--color-pomeriggio);
+  background: var(--color-pomeriggio-bg);
+  color: var(--color-pomeriggio);
+  border-style: solid;
+}
+
+.shift-cell--notte {
+  border-color: var(--color-notte);
+  background: var(--color-notte-bg);
+  color: var(--color-notte);
+  border-style: solid;
+}
+
+.shift-cell--riposo {
+  border-style: dashed;
+}
+
+.shift-cell-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+}
+
+/* Stamp animation */
+.shift-cell--stamp {
+  animation: stamp-press 300ms ease-out;
+}
+
+@keyframes stamp-press {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+  60% {
+    transform: scale(0.95);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Conflict highlight */
+.shift-cell-conflict .shift-cell {
+  box-shadow: 0 0 0 2px var(--color-warning);
+  animation: conflict-pulse 2s ease-in-out infinite;
+}
+
+@keyframes conflict-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--color-warning); }
+  50% { box-shadow: 0 0 0 3px var(--color-warning); }
+}
+
+/* ===== Popover ===== */
+.shift-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-paper);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 160px;
+  animation: popover-in 150ms ease-out;
+}
+
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.shift-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  border-radius: var(--radius-sm);
+  min-height: 36px;
+  min-width: 44px;
+  text-align: left;
+  transition: background-color 120ms ease, transform 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shift-option:hover {
+  background: var(--color-card-hover);
+}
+
+.shift-option:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -1px;
+}
+
+.shift-option:active {
+  transform: scale(0.98);
+}
+
+.shift-option--selected {
+  font-weight: 600;
+}
+
+.shift-option-check {
+  margin-left: auto;
+  color: var(--color-ink-secondary);
+  font-size: var(--text-xs);
+}
+
+.shift-option--mattina:hover { background: var(--color-mattina-bg); color: var(--color-mattina); }
+.shift-option--pomeriggio:hover { background: var(--color-pomeriggio-bg); color: var(--color-pomeriggio); }
+.shift-option--notte:hover { background: var(--color-notte-bg); color: var(--color-notte); }
+.shift-option--riposo:hover { background: var(--color-riposo-bg); color: var(--color-riposo); }

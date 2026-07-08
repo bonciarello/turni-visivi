@@ -1,0 +1,42 @@
+/* ===== App Layout ===== */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.app-content {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: var(--space-4);
+}
+
+.app-footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+}
+
+.app-footer p {
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+  font-family: var(--font-body);
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .app-main {
+    flex-direction: column;
+  }
+
+  .app-content {
+    padding: var(--space-2);
+  }
+}
